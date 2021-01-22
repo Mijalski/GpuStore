@@ -1,8 +1,10 @@
 ﻿@page "/"
 @using Volo.Abp.MultiTenancy
+@using Mijalski.GpuStore.Business.ContactMessages
 @inherits GpuStoreComponentBase
 @inject ICurrentTenant CurrentTenant
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IContactMessageAppService ContactMessageAppService;
 <div class="container">
     <div class="p-5 text-center">
         <Badge Color="Color.Success" class="mb-4">
@@ -20,11 +22,70 @@
             <a class="btn btn-primary" href="/authentication/login">
                 <i class="fa fa-sign-in-alt"></i> @L["Login"]
             </a>
+
+            <h4>Contact form:</h4>
+            <Form>
+                <Validations @ref="validations" Mode="ValidationMode.Manual">
+                    <Validation Validator="@ValidateRequiredField">
+                        <Field>
+                            <FieldLabel>@L["SenderName"]</FieldLabel>
+                            <TextEdit @bind-Text="messageDto.SenderName">
+                                <Feedback>
+                                    <ValidationError>Field is required.</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </Field>
+                    </Validation>
+                    <Validation Validator="@ValidateEmail">
+                        <Field>
+                            <FieldLabel>@L["SenderEmail"]</FieldLabel>
+                            <TextEdit @bind-Text="messageDto.SenderEmail">
+                                <Feedback>
+                                    <ValidationNone>Please enter the email.</ValidationNone>
+                                    <ValidationError>Enter valid email!</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </Field>
+                    </Validation>
+                    <Validation Validator="@ValidateRequiredField">
+                        <Field>
+                            <FieldLabel>@L["Content"]</FieldLabel>
+                            <MemoEdit @bind-Text="@messageDto.Content">
+                                <Feedback>
+                                    <ValidationError>Field is required.</ValidationError>
+                                </Feedback>
+                            </MemoEdit>
+                        </Field>
+                    </Validation>
+                </Validations>
+                <Button Color="Color.Primary" Clicked="@SendMessage">Send Message</Button>
+            </Form>
+
         }
-        else
-        {
-        }
-        
     </div>
 </div>
 
+@code
+{ CreateUpdateContactMessageDto messageDto = new CreateUpdateContactMessageDto();
+    Validations validations;
+
+    void ValidateEmail(ValidatorEventArgs e)
+    {
+        var email = Convert.ToString(e.Value);
+
+        e.Status = string.IsNullOrEmpty(email) ? ValidationStatus.None :
+            email.Contains("@") ? ValidationStatus.Success : ValidationStatus.Error;
+    }
+
+    void ValidateRequiredField(ValidatorEventArgs e)
+    {
+        e.Status = string.IsNullOrEmpty(e.Value?.ToString()) ? ValidationStatus.Error : ValidationStatus.Success;
+    }
+
+    public async Task SendMessage()
+    {
+        if (validations.ValidateAll())
+        {
+            await ContactMessageAppService.SendMessage(messageDto.SenderName, messageDto.SenderEmail, messageDto.Content);
+        }
+    } }
