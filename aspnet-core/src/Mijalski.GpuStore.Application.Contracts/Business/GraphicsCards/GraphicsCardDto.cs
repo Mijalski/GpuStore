@@ -1,7 +1,7 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.GraphicsCards
 {
     public class GraphicsCardDto : AuditedEntityDto<Guid>
     {

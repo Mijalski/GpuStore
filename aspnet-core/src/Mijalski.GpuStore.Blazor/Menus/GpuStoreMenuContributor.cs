@@ -59,7 +59,15 @@ namespace Mijalski.GpuStore.Blazor.Menus
                     "GpuStore.GraphicsCards",
                     l["Menu:GraphicsCards"],
                     url: "/graphicsCards"
-                ));
+                )); 
+            }
+            if (await context.IsGrantedAsync(GpuStorePermissions.ContactMessages.Default))
+            {
+                gpuStoreMenu.AddItem(new ApplicationMenuItem(
+                    "GpuStore.ContactMessages",
+                    l["Menu:ContactMessages"],
+                    url: "/contactMessages"
+                )); 
             }
         }
 

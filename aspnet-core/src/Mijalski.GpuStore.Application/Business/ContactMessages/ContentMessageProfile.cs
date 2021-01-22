@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.ContactMessages
 {
     public class ContentMessageProfile : Profile
     {

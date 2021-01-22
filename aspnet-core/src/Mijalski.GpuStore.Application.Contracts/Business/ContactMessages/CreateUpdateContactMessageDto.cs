@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Application.Dtos;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.ContactMessages
 {
     public class CreateUpdateContactMessageDto : AuditedEntityDto<long>
     {

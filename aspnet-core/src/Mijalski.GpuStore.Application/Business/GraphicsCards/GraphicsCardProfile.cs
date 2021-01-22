@@ -1,8 +1,6 @@
-﻿using System;
-using AutoMapper;
-using Volo.Abp.Application.Dtos;
+﻿using AutoMapper;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.GraphicsCards
 {
     public class GraphicsCardProfile : Profile
     {

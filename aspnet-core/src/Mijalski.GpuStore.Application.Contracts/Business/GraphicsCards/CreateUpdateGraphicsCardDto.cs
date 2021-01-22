@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Application.Dtos;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.GraphicsCards
 {
     public class CreateUpdateGraphicsCardDto : AuditedEntityDto<Guid>
     {

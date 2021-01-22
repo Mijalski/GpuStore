@@ -4,7 +4,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace Mijalski.GpuStore.Business
+namespace Mijalski.GpuStore.Business.GraphicsCards
 {
     public class GraphicsCardAppService :
         CrudAppService<

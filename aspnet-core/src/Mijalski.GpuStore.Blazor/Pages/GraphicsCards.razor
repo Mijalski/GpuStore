@@ -4,11 +4,12 @@
 @using Volo.Abp.Application.Dtos
 @using Microsoft.Extensions.Localization
 @using Mijalski.GpuStore.Business
+@using Mijalski.GpuStore.Business.GraphicsCards
 @using Mijalski.GpuStore.Localization
 @using Mijalski.GpuStore.Permissions
 @inject IStringLocalizer<GpuStoreResource> L
 @inject AbpBlazorMessageLocalizerHelper<GpuStoreResource> LH
-@inherits AbpCrudPageBase<Mijalski.GpuStore.Business.IGraphicsCardAppService, Mijalski.GpuStore.Business.GraphicsCardDto, Guid, PagedAndSortedResultRequestDto, Mijalski.GpuStore.Business.CreateUpdateGraphicsCardDto>
+@inherits AbpCrudPageBase<IGraphicsCardAppService, Mijalski.GpuStore.Business.GraphicsCards.GraphicsCardDto, Guid, PagedAndSortedResultRequestDto, Mijalski.GpuStore.Business.GraphicsCards.CreateUpdateGraphicsCardDto>
 
 <Card>
     <CardHeader>

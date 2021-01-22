@@ -33,5 +33,6 @@
     "Permission:GraphicsCards.Create": "Creating new Graphics Cards",
     "Permission:GraphicsCards.Edit": "Editing Graphics Cards",
     "Permission:GraphicsCards.Delete": "Deleting Graphics Cards",
+    "Permission:ContactMessages": "Contact Messages Management"
   }
 }
