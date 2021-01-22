@@ -32,6 +32,10 @@
     "Permission:GraphicsCards.Create": "Dodawanie kart graficznych",
     "Permission:GraphicsCards.Edit": "Edytowanie kart graficznych",
     "Permission:GraphicsCards.Delete": "Usuwanie kart graficznych",
-    "Permission:ContactMessages": "Zarządzanie wiadomościami"
+    "Permission:ContactMessages": "Zarządzanie wiadomościami",
+    "ContactMessages": "Wiadomości",
+    "SenderName": "Imie i nazwisko",
+    "SenderEmail": "Email",
+    "Content": "Zawartość"
   }
 }

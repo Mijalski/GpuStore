@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Application.Dtos;
+﻿using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace Mijalski.GpuStore.Business.ContactMessages
@@ -8,8 +9,8 @@ namespace Mijalski.GpuStore.Business.ContactMessages
             ContactMessageDto, 
             long, 
             PagedAndSortedResultRequestDto, 
-            CreateUpdateContactMessageDto> 
+            CreateUpdateContactMessageDto>
     {
-
+        Task SendMessage(string name, string email, string content);
     }
 }

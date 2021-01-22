@@ -1,0 +1,42 @@
+﻿@page "/contactMessages"
+@attribute [Authorize(GpuStorePermissions.ContactMessages.Default)]
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.Application.Dtos
+@using Microsoft.Extensions.Localization
+@using Mijalski.GpuStore.Business.ContactMessages
+@using Mijalski.GpuStore.Localization
+@using Mijalski.GpuStore.Permissions
+@inject IStringLocalizer<GpuStoreResource> L
+@inject AbpBlazorMessageLocalizerHelper<GpuStoreResource> LH
+@inherits AbpCrudPageBase<IContactMessageAppService, ContactMessageDto, long, PagedAndSortedResultRequestDto, CreateUpdateContactMessageDto>
+
+<Card>
+    <CardHeader>
+        <Row Class="justify-content-between">
+            <Column ColumnSize="ColumnSize.IsAuto">
+                <h2>@L["ContactMessages"]</h2>
+            </Column>
+        </Row>
+    </CardHeader>
+
+    <CardBody>
+        <DataGrid TItem="ContactMessageDto"
+                  Data="Entities"
+                  ReadData="OnDataGridReadAsync"
+                  TotalItems="TotalCount"
+                  ShowPager="true"
+                  PageSize="PageSize">
+            <DataGridColumns>
+                <DataGridColumn TItem="ContactMessageDto"
+                                Field="@nameof(ContactMessageDto.SenderEmail)"
+                                Caption="@L["SenderEmail"]"></DataGridColumn>
+                <DataGridColumn TItem="ContactMessageDto"
+                                Field="@nameof(ContactMessageDto.SenderName)"
+                                Caption="@L["SenderName"]"></DataGridColumn>
+                <DataGridColumn TItem="ContactMessageDto"
+                                Field="@nameof(ContactMessageDto.Content)"
+                                Caption="@L["Content"]"></DataGridColumn>
+            </DataGridColumns>
+        </DataGrid>
+    </CardBody>
+</Card>
