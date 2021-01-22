@@ -44,6 +44,19 @@ namespace Mijalski.GpuStore.Blazor.Menus
                 )
             );
 
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                    "GraphicsCards",
+                    l["Menu:GraphicsCards"],
+                    icon: "fa fa-microchip"
+                ).AddItem(
+                    new ApplicationMenuItem(
+                        "GpuStore.GraphicsCards",
+                        l["Menu:GraphicsCards"],
+                        url: "/graphicsCards"
+                    )
+                )
+            );
             return Task.CompletedTask;
         }
 

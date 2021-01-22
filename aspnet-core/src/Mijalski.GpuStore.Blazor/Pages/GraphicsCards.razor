@@ -1,0 +1,80 @@
+﻿@page "/graphicsCards"
+@using Volo.Abp.Application.Dtos
+@using Acme.GraphicsCardStore.GraphicsCards
+@using Acme.GraphicsCardStore.Localization
+@using Microsoft.Extensions.Localization
+@using Mijalski.GpuStore.Business
+@inject IStringLocalizer<GraphicsCardStoreResource> L
+@inherits AbpCrudPageBase<Mijalski.GpuStore.Business.IGraphicsCardAppService, Mijalski.GpuStore.Business.GraphicsCardDto, Guid, PagedAndSortedResultRequestDto, Mijalski.GpuStore.Business.CreateUpdateGraphicsCardDto>
+
+<Card>
+    <CardHeader>
+        <h2>@L["GraphicsCards"]</h2>
+    </CardHeader>
+    <CardBody>
+        <DataGrid TItem="GraphicsCardDto"
+                  Data="Entities"
+                  ReadData="OnDataGridReadAsync"
+                  TotalItems="TotalCount"
+                  ShowPager="true"
+                  PageSize="PageSize">
+            <DataGridColumns>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.Name)"
+                                Caption="@L["Name"]"></DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.Manufacturer)"
+                                Caption="@L["Manufacturer"]">
+                    <DisplayTemplate>
+                        @L[$"Enum:Manufacturer:{(int)context.Type}"]
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.ReleaseDate)"
+                                Caption="@L["ReleaseDate"]">
+                    <DisplayTemplate>
+                        @context.ReleaseDate.ToShortDateString()
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.Price)"
+                                Caption="@L["Price"]">
+                    <DisplayTemplate>
+                        @context.Price $
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.VendorName)"
+                                Caption="@L["VendorName"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.RamSize)"
+                                Caption="@L["RamSize"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.RamType)"
+                                Caption="@L["RamType"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.DoesSupportRtx)"
+                                Caption="@L["DoesSupportRtx"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.MemoryBus)"
+                                Caption="@L["MemoryBus"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.CudaCoresCount)"
+                                Caption="@L["CudaCoresCount"]">
+                </DataGridColumn>
+                <DataGridColumn TItem="GraphicsCardDto"
+                                Field="@nameof(GraphicsCardDto.CreationTime)"
+                                Caption="@L["CreationTime"]">
+                    <DisplayTemplate>
+                        @context.CreationTime.ToLongDateString()
+                    </DisplayTemplate>
+                </DataGridColumn>
+            </DataGridColumns>
+        </DataGrid>
+    </CardBody>
+</Card>

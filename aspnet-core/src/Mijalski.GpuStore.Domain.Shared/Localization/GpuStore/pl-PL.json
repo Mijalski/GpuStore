@@ -3,6 +3,29 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Witaj",
-    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io."
+    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io.",
+    "Menu:GraphicsCardStore": "Sklep Kart Graficznych",
+    "Menu:GraphicsCards": "Karty graficzne",
+    "Actions": "Akcje",
+    "Close": "Zamknij",
+    "Delete": "Usuń",
+    "Edit": "Edytuj",
+    "ReleaseDate": "Data premiry",
+    "NewGraphicsCard": "Nowa karta graficzna",
+    "Name": "Nazwa",
+    "Price": "Cena",
+    "CreationTime": "Data stworzenia",
+    "AreYouSure": "Jesteś pewien?",
+    "AreYouSureToDelete": "Czy na pewno chcesz usunąć ten obiekt?",
+    "Enum:Manufacturer:0": "Brak",
+    "Enum:Manufacturer:1": "Nvidia",
+    "Enum:Manufacturer:2": "Radeon",
+    "Enum:Manufacturer:3": "Intel",
+    "VendorName": "Producent",
+    "RamSize": "Rozmiar Ramu",
+    "RamType": "Typ ramu",
+    "DoesSupportRtx": "Wsparcie dla RTX",
+    "MemoryBus": "Szyna pamięci",
+    "CudaCoresCount": "Rdzenie CUDA"
   }
 }
