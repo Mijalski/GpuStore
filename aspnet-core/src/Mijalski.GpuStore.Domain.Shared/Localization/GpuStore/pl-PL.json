@@ -26,6 +26,11 @@
     "RamType": "Typ ramu",
     "DoesSupportRtx": "Wsparcie dla RTX",
     "MemoryBus": "Szyna pamięci",
-    "CudaCoresCount": "Rdzenie CUDA"
+    "CudaCoresCount": "Rdzenie CUDA",
+    "Permission:GpuStore": "Sklep kart graficznych",
+    "Permission:GraphicsCards": "Zarządzanie kartami graficznymi",
+    "Permission:GraphicsCards.Create": "Dodawanie kart graficznych",
+    "Permission:GraphicsCards.Edit": "Edytowanie kart graficznych",
+    "Permission:GraphicsCards.Delete": "Usuwanie kart graficznych",
   }
 }

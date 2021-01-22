@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Mijalski.GpuStore.Localization;
+using Mijalski.GpuStore.Permissions;
 using Volo.Abp.Account.Localization;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.Users;
@@ -30,7 +31,7 @@ namespace Mijalski.GpuStore.Blazor.Menus
             }
         }
 
-        private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+        private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
             var l = context.GetLocalizer<GpuStoreResource>();
 
@@ -44,20 +45,22 @@ namespace Mijalski.GpuStore.Blazor.Menus
                 )
             );
 
-            context.Menu.AddItem(
-                new ApplicationMenuItem(
-                    "GraphicsCards",
-                    l["Menu:GraphicsCards"],
-                    icon: "fa fa-microchip"
-                ).AddItem(
-                    new ApplicationMenuItem(
-                        "GpuStore.GraphicsCards",
-                        l["Menu:GraphicsCards"],
-                        url: "/graphicsCards"
-                    )
-                )
+            var gpuStoreMenu = new ApplicationMenuItem(
+                "GraphicsCardsStore",
+                l["Menu:GraphicsCardStore"],
+                icon: "fa fa-microchip"
             );
-            return Task.CompletedTask;
+
+            context.Menu.AddItem(gpuStoreMenu);
+
+            if (await context.IsGrantedAsync(GpuStorePermissions.GraphicsCards.Default))
+            {
+                gpuStoreMenu.AddItem(new ApplicationMenuItem(
+                    "GpuStore.GraphicsCards",
+                    l["Menu:GraphicsCards"],
+                    url: "/graphicsCards"
+                ));
+            }
         }
 
         private Task ConfigureUserMenuAsync(MenuConfigurationContext context)

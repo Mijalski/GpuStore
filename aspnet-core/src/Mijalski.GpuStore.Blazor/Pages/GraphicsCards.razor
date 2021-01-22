@@ -1,8 +1,11 @@
 ﻿@page "/graphicsCards"
+@attribute [Authorize(GpuStorePermissions.GraphicsCards.Default)]
+@using Microsoft.AspNetCore.Authorization
 @using Volo.Abp.Application.Dtos
 @using Microsoft.Extensions.Localization
 @using Mijalski.GpuStore.Business
 @using Mijalski.GpuStore.Localization
+@using Mijalski.GpuStore.Permissions
 @inject IStringLocalizer<GpuStoreResource> L
 @inject AbpBlazorMessageLocalizerHelper<GpuStoreResource> LH
 @inherits AbpCrudPageBase<Mijalski.GpuStore.Business.IGraphicsCardAppService, Mijalski.GpuStore.Business.GraphicsCardDto, Guid, PagedAndSortedResultRequestDto, Mijalski.GpuStore.Business.CreateUpdateGraphicsCardDto>
@@ -14,10 +17,13 @@
                 <h2>@L["GraphicsCards"]</h2>
             </Column>
             <Column ColumnSize="ColumnSize.IsAuto">
-                <Button Color="Color.Primary"
-                        Clicked="OpenCreateModalAsync">
-                    @L["NewGraphicsCard"]
-                </Button>
+                @if (HasCreatePermission)
+                {
+                    <Button Color="Color.Primary"
+                            Clicked="OpenCreateModalAsync">
+                        @L["NewGraphicsCard"]
+                    </Button>
+                }
             </Column>
         </Row>
     </CardHeader>
@@ -90,10 +96,12 @@
                         <EntityActions TItem="GraphicsCardDto" EntityActionsColumn="@EntityActionsColumn">
                             <EntityAction TItem="GraphicsCardDto"
                                           Text="@L["Edit"]"
+                                          RequiredPolicy="@UpdatePolicyName"
                                           Clicked="() => OpenEditModalAsync(context)" />
                             <EntityAction TItem="GraphicsCardDto"
                                           Text="@L["Delete"]"
                                           Clicked="() => DeleteEntityAsync(context)"
+                                          RequiredPolicy="@DeletePolicyName"
                                           ConfirmationMessage="() => GetDeleteConfirmationMessage(context)" />
 
                         </EntityActions>
@@ -249,7 +257,7 @@
                         <Check @bind-Checked="EditingEntity.DoesSupportRtx" />
                     </Field>
                 </Validations>
-            </ModalBody>            
+            </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
                         Clicked="CloseEditModalAsync">
@@ -265,3 +273,13 @@
         </Form>
     </ModalContent>
 </Modal>
+
+@code
+{
+    public GraphicsCards() // Constructor
+    {
+        CreatePolicyName = GpuStorePermissions.GraphicsCards.Create;
+        UpdatePolicyName = GpuStorePermissions.GraphicsCards.Edit;
+        DeletePolicyName = GpuStorePermissions.GraphicsCards.Delete;
+    }
+}

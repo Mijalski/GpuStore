@@ -10,8 +10,10 @@ namespace Mijalski.GpuStore.Permissions
         {
             var myGroup = context.AddGroup(GpuStorePermissions.GroupName);
 
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(GpuStorePermissions.MyPermission1, L("Permission:MyPermission1"));
+            var booksPermission = myGroup.AddPermission(GpuStorePermissions.GraphicsCards.Default, L("Permission:GraphicsCards"));
+            booksPermission.AddChild(GpuStorePermissions.GraphicsCards.Create, L("Permission:GraphicsCards.Create"));
+            booksPermission.AddChild(GpuStorePermissions.GraphicsCards.Edit, L("Permission:GraphicsCards.Edit"));
+            booksPermission.AddChild(GpuStorePermissions.GraphicsCards.Delete, L("Permission:GraphicsCards.Delete"));
         }
 
         private static LocalizableString L(string name)

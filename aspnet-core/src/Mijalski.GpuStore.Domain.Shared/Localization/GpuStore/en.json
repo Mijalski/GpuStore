@@ -27,6 +27,11 @@
     "RamType": "Ram type",
     "DoesSupportRtx": "RTX Support",
     "MemoryBus": "Memory bus",
-    "CudaCoresCount": "CUDA Cores"
+    "CudaCoresCount": "CUDA Cores",
+    "Permission:GpuStore": "Graphics Cards Store",
+    "Permission:GraphicsCards": "Graphics Cards Management",
+    "Permission:GraphicsCards.Create": "Creating new Graphics Cards",
+    "Permission:GraphicsCards.Edit": "Editing Graphics Cards",
+    "Permission:GraphicsCards.Delete": "Deleting Graphics Cards",
   }
 }
