@@ -6,6 +6,7 @@
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
     "Menu:GraphicsCardStore": "Graphics Card Store",
     "Menu:GraphicsCards": "Graphics Cards",
+    "Menu:ContactMessages": "Contact Messages",
     "Actions": "Actions",
     "Close": "Close",
     "Delete": "Delete",
@@ -37,6 +38,6 @@
     "ContactMessages": "Contact Messages",
     "SenderName": "Name",
     "SenderEmail": "Email",
-    "Content": "Content" 
+    "Content": "Content"
   }
 }
