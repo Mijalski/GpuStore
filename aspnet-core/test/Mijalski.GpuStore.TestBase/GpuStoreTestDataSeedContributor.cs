@@ -21,24 +21,12 @@ namespace Mijalski.GpuStore
             if (await _graphicsCardRepository.GetCountAsync() <= 0)
             {
                 await _graphicsCardRepository.InsertAsync(
-                    new GraphicsCard
-                    {
-                        Name = "1984",
-                        Type = BookType.Dystopia,
-                        PublishDate = new DateTime(1949, 6, 8),
-                        Price = 19.84f
-                    },
+                    new GraphicsCard("RTX 3060Ti", Manufacturer.Nvidia, 399, "ZOTAC", "8GB", "GDDR6", new DateTime(2020, 12, 01)),
                     autoSave: true
                 );
 
                 await _graphicsCardRepository.InsertAsync(
-                    new Book
-                    {
-                        Name = "The Hitchhiker's Guide to the Galaxy",
-                        Type = BookType.ScienceFiction,
-                        PublishDate = new DateTime(1995, 9, 27),
-                        Price = 42.0f
-                    },
+                    new GraphicsCard("RX 570", Manufacturer.Radeon, 159, "Gigabyte", "4GB", "GDDR5", new DateTime(2017, 10, 17)),
                     autoSave: true
                 );
             }

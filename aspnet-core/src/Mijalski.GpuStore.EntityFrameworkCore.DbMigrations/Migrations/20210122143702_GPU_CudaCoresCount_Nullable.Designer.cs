@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mijalski.GpuStore.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Mijalski.GpuStore.Migrations
 {
     [DbContext(typeof(GpuStoreMigrationsDbContext))]
-    partial class GpuStoreMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210122143702_GPU_CudaCoresCount_Nullable")]
+    partial class GPU_CudaCoresCount_Nullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

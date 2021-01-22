@@ -7,7 +7,7 @@ namespace Mijalski.GpuStore.Business
     {
 
         public string Name { get; set; }
-        public string Manufacturer { get; set; }
+        public Manufacturer Manufacturer { get; set; }
         public decimal Price { get; set; }
         public string VendorName { get; set; }
         public string RamSize { get; set; }

@@ -1,10 +1,9 @@
 ﻿@page "/graphicsCards"
 @using Volo.Abp.Application.Dtos
-@using Acme.GraphicsCardStore.GraphicsCards
-@using Acme.GraphicsCardStore.Localization
 @using Microsoft.Extensions.Localization
 @using Mijalski.GpuStore.Business
-@inject IStringLocalizer<GraphicsCardStoreResource> L
+@using Mijalski.GpuStore.Localization
+@inject IStringLocalizer<GpuStoreResource> L
 @inherits AbpCrudPageBase<Mijalski.GpuStore.Business.IGraphicsCardAppService, Mijalski.GpuStore.Business.GraphicsCardDto, Guid, PagedAndSortedResultRequestDto, Mijalski.GpuStore.Business.CreateUpdateGraphicsCardDto>
 
 <Card>
@@ -26,7 +25,7 @@
                                 Field="@nameof(GraphicsCardDto.Manufacturer)"
                                 Caption="@L["Manufacturer"]">
                     <DisplayTemplate>
-                        @L[$"Enum:Manufacturer:{(int)context.Type}"]
+                        @L[$"Enum:Manufacturer:{(int)context.Manufacturer}"]
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="GraphicsCardDto"

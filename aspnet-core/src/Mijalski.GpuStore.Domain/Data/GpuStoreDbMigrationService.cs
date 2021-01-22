@@ -7,8 +7,10 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Mijalski.GpuStore.Business;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 
@@ -22,17 +24,20 @@ namespace Mijalski.GpuStore.Data
         private readonly IEnumerable<IGpuStoreDbSchemaMigrator> _dbSchemaMigrators;
         private readonly ITenantRepository _tenantRepository;
         private readonly ICurrentTenant _currentTenant;
+        private readonly IRepository<GraphicsCard, Guid> _graphicsCardRepository;
 
         public GpuStoreDbMigrationService(
             IDataSeeder dataSeeder,
             IEnumerable<IGpuStoreDbSchemaMigrator> dbSchemaMigrators,
             ITenantRepository tenantRepository,
-            ICurrentTenant currentTenant)
+            ICurrentTenant currentTenant, 
+            IRepository<GraphicsCard, Guid> graphicsCardRepository)
         {
             _dataSeeder = dataSeeder;
             _dbSchemaMigrators = dbSchemaMigrators;
             _tenantRepository = tenantRepository;
             _currentTenant = currentTenant;
+            _graphicsCardRepository = graphicsCardRepository;
 
             Logger = NullLogger<GpuStoreDbMigrationService>.Instance;
         }
@@ -103,7 +108,18 @@ namespace Mijalski.GpuStore.Data
 
         private async Task SeedDataAsync(Tenant tenant = null)
         {
-            Logger.LogInformation($"Executing {(tenant == null ? "host" : tenant.Name + " tenant")} database seed...");
+            if (await _graphicsCardRepository.GetCountAsync() <= 0)
+            {
+                await _graphicsCardRepository.InsertAsync(
+                    new GraphicsCard("RTX 3060Ti", Manufacturer.Nvidia, 399, "ZOTAC", "8GB", "GDDR6", new DateTime(2020, 12, 01)),
+                    autoSave: true
+                );
+
+                await _graphicsCardRepository.InsertAsync(
+                    new GraphicsCard("RX 570", Manufacturer.Radeon, 159, "Gigabyte", "4GB", "GDDR5", new DateTime(2017, 10, 17)),
+                    autoSave: true
+                );
+            }
 
             await _dataSeeder.SeedAsync(tenant?.Id);
         }
