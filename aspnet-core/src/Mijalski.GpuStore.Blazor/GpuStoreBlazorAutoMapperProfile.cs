@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Mijalski.GpuStore.Business;
 
 namespace Mijalski.GpuStore.Blazor
 {
@@ -6,7 +7,7 @@ namespace Mijalski.GpuStore.Blazor
     {
         public GpuStoreBlazorAutoMapperProfile()
         {
-            //Define your AutoMapper configuration here for the Blazor project.
+            CreateMap<GraphicsCardDto, CreateUpdateGraphicsCardDto>();
         }
     }
 }

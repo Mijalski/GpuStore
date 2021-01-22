@@ -11,7 +11,7 @@ namespace Mijalski.GpuStore.Business
         [StringLength(128)]
         public string Name { get; set; }
         [Required]
-        public string Manufacturer { get; set; }
+        public Manufacturer Manufacturer { get; set; } = Manufacturer.Undefined;
         [Required]
         public decimal Price { get; set; }
 
