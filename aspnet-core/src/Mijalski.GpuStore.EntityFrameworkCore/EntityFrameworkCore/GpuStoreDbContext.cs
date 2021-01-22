@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mijalski.GpuStore.Business;
 using Mijalski.GpuStore.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace Mijalski.GpuStore.EntityFrameworkCore
     public class GpuStoreDbContext : AbpDbContext<GpuStoreDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<GraphicsCard> GraphicsCards { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside GpuStoreDbContextModelCreatingExtensions.ConfigureGpuStore
