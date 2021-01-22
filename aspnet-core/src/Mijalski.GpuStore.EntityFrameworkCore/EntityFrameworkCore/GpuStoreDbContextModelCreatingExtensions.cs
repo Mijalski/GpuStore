@@ -21,6 +21,15 @@ namespace Mijalski.GpuStore.EntityFrameworkCore
                 b.Property(_ => _.RamSize).HasMaxLength(128);
                 b.Property(_ => _.RamType).HasMaxLength(128);
                 b.Property(_ => _.VendorName).HasMaxLength(128);
+            }); 
+
+            builder.Entity<ContactMessage>(b =>
+            {
+                b.ToTable(GpuStoreConsts.DbTablePrefix + "ContactMessages", GpuStoreConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.Property(_ => _.Content).IsRequired().HasMaxLength(4098);
+                b.Property(_ => _.SenderName).IsRequired().HasMaxLength(128);
+                b.Property(_ => _.SenderEmail).IsRequired().HasMaxLength(128);
             });
         }
     }
